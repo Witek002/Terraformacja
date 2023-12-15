@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
     else
         ui->label->setText("conected: fail");
-    db.close();
+    //db.close();
 }
 
 MainWindow::~MainWindow()
@@ -28,16 +28,16 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     this->i++;
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QCoreApplication::applicationFilePath()+"mars.db");
+    //db = QSqlDatabase::addDatabase("QSQLITE");
+    //db.setDatabaseName(QCoreApplication::applicationFilePath()+"mars.db");
     qInfo() <<db.open();
     if(db.open()){
         db.transaction();
         QSqlQuery select(db);
         QString name;
-        select.prepare("Select nazwa from karta where id = (:n)");
-        select.bindValue(":n",i);
-        if(select.exec())
+        //select.prepare("Select nazwa from karta where id = (:n)");
+        //select.bindValue(":n",i);
+        if(select.exec("Select nazwa from karta where id ="+QString::number(i)))
         {
             if(select.next())
             {
@@ -51,6 +51,6 @@ void MainWindow::on_pushButton_clicked()
         }
     }
     db.commit();
-    db.close();
+    //db.close();
 }
 

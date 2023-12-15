@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     dane.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    program.cpp
 
 HEADERS += \
     dane.h \
-    mainwindow.h
+    mainwindow.h \
+    program.h
 
 FORMS += \
     mainwindow.ui
