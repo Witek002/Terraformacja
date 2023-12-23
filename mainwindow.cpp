@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("mars.sqlite");
+    db.setDatabaseName("mars.db");
     qInfo() <<db.open();
     if(db.open())
     {
@@ -34,7 +34,7 @@ void MainWindow::on_pushButton_clicked()
         QSqlQuery query;
         query.prepare("Select nazwa from karta where id = 1");
         //query.bindValue(":n", i);
-        if(query.exec())
+        if(query.exec()) //ciągle zwraca false
         {
             while(query.next())
             {
