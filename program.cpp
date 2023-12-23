@@ -3,17 +3,21 @@
 bool testKarty(karta *c,gracz *g,mars *m)
 {
     if(c->getWym().ext)
+    {
         if(c->getWym().sym>=g->getSymbole())
             if(c->getWym().temp>=m->getTemp())
                 if(c->getWym().tlen>=m->getTlen())
                     if(c->getWym().ocean>=m->getOceany())
                         return 1;
+    }
     else
+    {
         if(c->getWym().sym>=g->getSymbole())
             if(c->getWym().temp>=m->getTemp())
                 if(c->getWym().tlen>=m->getTlen())
                     if(c->getWym().ocean>=m->getOceany())
                         return 1;
+    }
 
     return 0;
 }

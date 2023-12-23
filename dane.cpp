@@ -188,7 +188,7 @@ bool gracz::addZloto(int z)
 
 korporacja::korporacja()
 {
-
+// dane z BD
 }
 
 mars::mars()

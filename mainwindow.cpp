@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QCoreApplication::applicationFilePath()+"mars.db");
+    db.setDatabaseName("mars.sqlite");
     qInfo() <<db.open();
     if(db.open())
     {
@@ -28,29 +28,26 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     this->i++;
-    //db = QSqlDatabase::addDatabase("QSQLITE");
-    //db.setDatabaseName(QCoreApplication::applicationFilePath()+"mars.db");
     qInfo() <<db.open();
     if(db.open()){
-        db.transaction();
-        QSqlQuery select(db);
         QString name;
-        //select.prepare("Select nazwa from karta where id = (:n)");
-        //select.bindValue(":n",i);
-        if(select.exec("Select nazwa from karta where id ="+QString::number(i)))
+        QSqlQuery query;
+        query.prepare("Select nazwa from karta where id = 1");
+        //query.bindValue(":n", i);
+        if(query.exec())
         {
-            if(select.next())
+            while(query.next())
             {
-                name = select.value(0).toString();
+                name = query.value(0).toString();
                 ui->label->setText(QString::number(i)+" "+name);
             }
         }
         else
         {
-            ui->label->setText(select.lastError().text());
+            ui->label->setText(query.lastError().text());
         }
     }
-    db.commit();
+    //db.commit();
     //db.close();
 }
 

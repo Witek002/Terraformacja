@@ -10,12 +10,14 @@ CONFIG += c++17
 
 SOURCES += \
     dane.cpp \
+    db.cpp \
     main.cpp \
     mainwindow.cpp \
     program.cpp
 
 HEADERS += \
     dane.h \
+    db.h \
     mainwindow.h \
     program.h
 
